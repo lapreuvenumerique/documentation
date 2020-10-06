@@ -90,6 +90,7 @@ The file has to be passed in a FormData
 | keywords     | `string[]`                     | null          | The keywords related to the proof, usefull to query it afterwards |
 | noDuplicate  | `boolean`<code>Required</code> |               | Whether or not the file is stored if it's already on the server |
 | keepFile     | `boolean`<code>Required</code> |               | Wether or not the file is saved on the server                |
+| locale       | `string`                       | en            | Locale for the returned message                              |
 
 Response:
 
@@ -159,6 +160,7 @@ Description: Opens a new transaction to upload multiple proofs with the same inf
 | keywords     | `string[]`                     | null          | The keywords related to the proofs, usefull to query it afterwards |
 | noDuplicate  | `boolean`<code>Required</code> |               | Whether or not the files arestored if they are already on the server |
 | keepFile     | `boolean`<code>Required</code> |               | Wether or not the files isaresaved on the server             |
+| locale       | `string`                       | en            | Locale for the returned message                              |
 
 Response: 
 
@@ -186,6 +188,7 @@ Description: Uploads mutliples files with the same information
 | ------------- | ----------------------------- | ---------------------------------------------------- |
 | transactionId | `string`<code>Required</code> | The id Returnsed by the beginMassTransaction service |
 | file          | `File`<code>Required</code>   | The proof to save                                    |
+| locale        | `string`                      | en                                                   |
 
 Response: 
 
@@ -215,6 +218,7 @@ Description: Ends the mass deposit with the provided transaction ID and store al
 | Parameters    | Acceptable value              | Details                                              |
 | ------------- | ----------------------------- | ---------------------------------------------------- |
 | transactionId | `string`<code>Required</code> | The id Returnsed by the beginMassTransaction service |
+| locale        | `string`                      | en                                                   |
 
 | Status | Name      | Details                                    |
 | ------ | --------- | ------------------------------------------ |
@@ -247,6 +251,7 @@ If the proof has an uploaded file attached, in the result, the value *hasFile* h
 | deadline     | `Date`                         | null          | The minimum date from which the RGPD of the proofs expired   |
 | fileName     | `string`                       | null          |                                                              |
 | page         | `integer`<code>Required</code> |               | The page of result to retrieve, one page has 50 proofs       |
+| locale       | `string`                       | en            | Locale for the returned message                              |
 
 Response:
 
@@ -286,6 +291,10 @@ Url: /1.0/deadlines
 Authorization: API key
 Description: Returns all the deadlines of the proofs which are saved on the server only(The date the RGPD expired)
 
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
+
 Response:
 
 ```json
@@ -314,6 +323,7 @@ You'll also get some informatations of the client, like it's name, address, and 
 | Parameters  | Acceptable value               | Details                                   |
 | ----------- | ------------------------------ | ----------------------------------------- |
 | fingerprint | `string` <code>Required</code> | The fingerprint of the file to search for |
+| locale      | `string`                       | en                                        |
 
 Response: 
 
@@ -358,6 +368,7 @@ Description: Checks if the fingerprint provided is equal to the one of the proof
 | ----------- | ------------------------------ | ------------------------------------ |
 | fingerprint | `string` <code>Required</code> | The fingerprint to test              |
 | fileID      | `number` <code>Required</code> | The id of the file to test in the DB |
+| locale      | `string`                       | en                                   |
 
 ```json
 {
@@ -379,6 +390,10 @@ Url: /1.0/proofscount
 Authorization: API key
 Description: Returns the number of proof in the DB
 
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
+
 Response:
 
 ```json
@@ -399,6 +414,7 @@ Description: Downloads the file with the requested ID
 | URL parameters | Acceptable Value              | Details                         |
 | -------------- | ----------------------------- | ------------------------------- |
 | uid            | `Number`<code>Required</code> | The uid of the file to download |
+| locale         | `string`                      | en                              |
 
 Response: 
 
@@ -423,6 +439,7 @@ Description: Downloads the receipt of the requested proof
 | URL parameters | Acceptable value               | Details              |
 | -------------- | ------------------------------ | -------------------- |
 | uid            | `integer`<code>Required</code> | The uid of the proof |
+| locale         | `string`                       | en                   |
 
 Response:
 
@@ -447,6 +464,7 @@ Description: Returns the fingerprint of the provided file
 | Parameter | Acceptable value            | Details                              |
 | --------- | --------------------------- | ------------------------------------ |
 | file      | `File`<code>Required</code> | The file to get the fingerprint from |
+| locale    | `string`                    | en                                   |
 
 ```json
 {
@@ -462,6 +480,10 @@ Method: GET
 Url: /1.0/verifyintegrity
 Authorization: API key
 Description: Checks if the client blockchain is correct for each record
+
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
 
 Response:
 
@@ -488,6 +510,12 @@ Url: /1.0/login
 Authorization: API key
 Description: Checks if the headers are correct with the APIkey as authorization
 
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
+
+Response:
+
 ```json
 {
 	"status": "SUCCESS"
@@ -502,6 +530,12 @@ Method: GET
 Url: /1.0/loginsecret
 Authorization: Secret key
 Description: Checks if the headers are correct with the secret key as authorization and send back information
+
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
+
+Response:
 
 ```json
 { 
@@ -525,6 +559,10 @@ Method: GET
 Url: /1.0/client
 Authorization: API key
 Description: Returns all the public informations about the client
+
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
 
 Response:
 
@@ -554,6 +592,7 @@ Description: Returns a page with 30 transaction logs of the client
 | Url parameters | Acceptable value | Details |
 | -------------- | ---------------- | ------- |
 | page           | `integer`        |         |
+| locale         | `string`         | en      |
 
 Response: 
 
@@ -587,6 +626,7 @@ Description: Returns a page with 30 access logs of the client
 | URL parameters | Acceptable value | Details                          |
 | -------------- | ---------------- | -------------------------------- |
 | page           | `integer`        | The page of the logs to retrieve |
+| locale         | `string`         | en                               |
 
 ```json
 {
@@ -626,7 +666,11 @@ Url: /1.0/credits
 Authorization: API key
 Description: Returns the number of credit available for the client
 
-Response: 
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
+
+Response:
 
 ```json
 {
@@ -644,6 +688,12 @@ Url: /1.0/companyname
 Authorization: API key
 Description: Returns the name of the client
 
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
+
+Response:
+
 ```json
 {
     "uid": "",
@@ -660,6 +710,12 @@ Url: /1.0/companydomainname
 Authorization: API key
 Description: Returns the name of the client COMPANY (DOMAIN)
 
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
+
+Response:
+
 ```json
 {
     "uid": "",
@@ -675,6 +731,12 @@ Method: GET
 Url: /1.0/topics
 Authorization: API key
 Description: Returns the name of the topics
+
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
+
+Response:
 
 ```json
 {
@@ -696,6 +758,12 @@ Method: GET
 Url: /1.0/topicsfull
 Authorization: Secret key
 Description: Returns the name of the topics
+
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
+
+Response:
 
 ```json
 {
@@ -721,6 +789,7 @@ Description: Adds a new topic to the client DB
 | Parameter | Acceptable value              | Details                         |
 | --------- | ----------------------------- | ------------------------------- |
 | name      | `string`<code>Required</code> | The name of the topic to create |
+| locale    | `string`                      | en                              |
 
 Response:
 
@@ -747,6 +816,7 @@ Description: Delete the topics
 | URL parameter | Acceptable value               | Details                       |
 | ------------- | ------------------------------ | ----------------------------- |
 | id            | `integer`<code>Required</code> | The id of the topic to delete |
+| locale        | `string`                       | en                            |
 
 Response : 
 
@@ -772,6 +842,12 @@ Method: GET
 Url: /1.0/apikeys
 Authorization: Secret key
 Description: Returns all the keys created by the client
+
+| Parameter | Acceptable Values | Default value | Details                         |
+| --------- | ----------------- | ------------- | ------------------------------- |
+| locale    | `string`          | en            | Locale for the returned message |
+
+Response:
 
 ```json
 {
@@ -799,6 +875,7 @@ Description: Creates a new Apikey with the provided information
 | Parameters  | Acceptable Value               | Details                                   |
 | ----------- | ------------------------------ | ----------------------------------------- |
 | description | `string` <code>Required</code> | By who and for what this key will be used |
+| locale      | `string`                       | en                                        |
 
 Response:
 
@@ -824,6 +901,7 @@ Description: Update the information of a key, and can also revoke a key to never
 | description   | `string`                        | The new description of the key                               |
 | revoked       | `boolean`                       | Wether or not the key can no longer be used ever             |
 | revokedReason | `string`                        | Required if revoked is set to true, explains why the key is revoked |
+| locale        | `string`                        | en                                                           |
 
 Response: 
 
